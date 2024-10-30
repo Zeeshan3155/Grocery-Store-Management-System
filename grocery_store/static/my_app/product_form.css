@@ -1,0 +1,185 @@
+/* btn style */
+.selectAction {
+    display: inline-block;
+    outline: 0;
+    margin-left: 13.3%;
+    cursor: pointer;
+    border: none;
+    padding: 0 30px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 9px;
+    background-color: #6c7ae0;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    width:180px;
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+    }
+
+.selectAction:hover{
+    background: rgba(0,118,255,0.9);
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+    }
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100px;
+}
+
+.btn-primary{
+    background-color:#6c7ae0
+}
+.btn-primary:hover{
+
+}
+
+.button-41 {
+    margin-right: 20px;                /* Add space between button and text */
+}
+
+h3 {
+    font-weight: 500;
+}
+
+
+/* Overall Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+    overflow: hidden;
+    padding-top: 50px;
+}
+
+/* Modal Content Styling */
+.formHeader{
+    display:flex;
+}
+
+h4{
+    margin:auto;
+}
+
+
+.modal-content {
+    background-color: #f9f9f9;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Rounded corners */
+    width: 50%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in effect */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover, .close:focus {
+    color: #555;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Form Container Styling */
+.formContainer {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form elements */
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input Fields Styling */
+input[type="text"], select {
+    width: 100%;
+    padding: 6px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded input fields */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    font-size: 16px;
+    transition: border-color 0.3s;
+    color:#6c757d;
+}
+
+input[type="text"]:focus, select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+}
+
+/* Labels Styling */
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+    background-color: #6c7ae0;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button[type="button"]{
+    background-color: #d90429;
+    margin-top: 2%;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background: rgba(0,118,255,0.9);
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+}
+
+/* Optional: Adjust modal layout on smaller screens */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%; /* Adjust width for smaller devices */
+    }
+
+    input[type="text"], select {
+        font-size: 14px; /* Slightly smaller text on mobile */
+    }
+}

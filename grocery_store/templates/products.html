@@ -1,0 +1,161 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'my_app\product_form.css' %}"/>
+<link rel="stylesheet" href="{% static 'my_app\scroll_styles.css' %}"/>
+{% endblock %}
+
+{% block popup_form %}
+    <div class="header-container">
+        <h3>Products</h3>
+    </div>
+    <div class="selectContainer">
+        <select class="selectAction">
+            <option value="">Select Action</option>
+            <option value="1">Add Product</option>
+            <option value="2">Edit Product</option>
+            <option value="3">Delete Product</option>
+        </select>
+    </div>
+
+    <!-- Include the popup form here -->
+    <div id="popupForm" class="modal">
+        <div class="modal-content">
+            <div class="formHeader">
+                <h4>Add New Product</h4>
+                <span id="closeBtn" class="close">&times;</span>
+            </div>
+            <div id="formContainer">
+                <form method="post" action="{% url 'product_save' %}">
+                    {% csrf_token %}
+                    <label for="pf_product_name">Name</label>
+                    <input type="text" id="pf_product_name" name="pf_product_name" required>
+                    <label for="pf_uom">UOM</label>
+                    <select id="pf_uom" class="custom-dropdown" name="pf_uom" required>
+                        <option></option>
+                        {% for u in uom %}
+                        <option value="{{u.uom_id}}">{{u.uom_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="pf_ppu">Price Per Unit</label>
+                    <input type="text" id="pf_ppu" name="pf_ppu" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Form 2 -->
+    <div id="popupForm2" class="modal">
+        <div class="modal-content">
+            <div class="formHeader">
+                <h4>Edit Product</h4>
+                <span class="close" id="closeBtn2">&times;</span>
+            </div>
+            <div class="formContainer">
+                <form method="post" action="{% url 'edit_product' %}">
+                    {% csrf_token %}
+                    <label for="pf_edit_product">Product Name</label>
+                    <select id="pf_edit_product" class="custom-dropdown" name="select_product" required>
+                        <option></option>
+                        {% for p in products %}
+                        <option value="{{p.product_id}}" p_name="{{p.name}}" p_price="{{p.price_per_unit}}">{{p.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="pf_edit_name">Edit Name</label>
+                    <input id="pf_edit_name" type="text" name="pf_edit_name">
+                    <label for="pf_edit_price">Edit Price</label>
+                    <input id="pf_edit_price" type="text" name="pf_edit_price">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="popupForm3" class="modal">
+        <div class="modal-content">
+            <div class="formHeader">
+                <h4>Delete Product</h4>
+                <span class="close" id="closeBtn3">&times;</span>
+            </div>
+            <div class="formContainer">
+                <form method="post" action="{% url 'delete_product' %}" id="delete_form">
+                    {% csrf_token %}
+                    <label for="delete_product">Product Name</label>
+                    <select id="delete_product" class="custom-dropdown" name="delete_product" required>
+                        <option></option>
+                        {% for p in products %}
+                        <option value="{{p.product_id}}" p_name="{{p.name}}" p_price="{{p.price_per_unit}}">{{p.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="button" onclick="confirmDelete()">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block container_class %}"table-container"{% endblock %}
+{% block content %}
+<table class="fixed-header">
+  <thead>
+    <tr>
+      <th scope="col">Product ID</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">UOM ID</th>
+      <th scope="col">Price Per Unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in products %}
+    <tr>
+      <td scope="row">{{p.product_id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.uom_id.uom_id}}</td>
+      <td>{{p.price_per_unit}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+{% block extra_js %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            {% if messages %}
+                {% for message in messages %}
+                    swal("Message", "{{ message }}", "success");
+                {% endfor %}
+            {% endif %}
+        });
+
+            $(document).ready(function() {
+            $('#pf_uom').select2({
+                placeholder: "Select Product",
+                width: '100%',
+                dropdownAutoWidth: true
+            });
+        });
+
+            $(document).ready(function() {
+            $('#pf_edit_product').select2({
+                placeholder: "Product",
+                width: '100%',
+                dropdownAutoWidth: true
+            });
+        });
+
+            $(document).ready(function() {
+            $('#delete_product').select2({
+                placeholder: "Product",
+                width: '100%',
+                dropdownAutoWidth: true
+            });
+        });
+
+
+    </script>
+    <script src="{% static 'my_app/product_form.js' %}"></script>
+{% endblock %}

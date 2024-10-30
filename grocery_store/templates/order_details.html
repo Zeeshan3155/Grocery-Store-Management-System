@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block header %}
+<div class="header">
+  <h3>Order Details</h3>
+</div>
+{% endblock %}
+{% block container_class %}"table-container"{% endblock %}
+{% block content %}
+<table class="fixed-header">
+  <thead>
+    <tr>
+      <th scope="col">Order ID</th>
+      <th scope="col">Product ID</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for od in order_details %}
+    <tr>
+      <td scope="row">{{od.order_id.order_id}}</td>
+      <td>{{od.product_id.product_id}}</td>
+      <td>{{od.quantity}}</td>
+      <td>{{od.total_price}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

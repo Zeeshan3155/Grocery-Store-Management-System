@@ -1,0 +1,39 @@
+.btn.btn-success{
+    margin-top:10px;
+    background-color:#6c7ae0;
+    border:none;
+}
+
+.btn.btn-success:hover{
+    background: rgba(0,118,255,0.9);
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+    border-color:rgba(0,118,255,0.9);
+}
+
+.table{
+    color:#6c757d;
+}
+
+.form-control{
+    color:#495057;
+}
+
+/* Additional custom styles for floating label */
+
+.form-floating .form-control {
+    height: 38px; /* Adjust this value as needed */
+    padding: 0.375rem 0.75rem; /* Padding to keep text aligned */
+    font-size: 14px; /* Optional: Adjust font size for a more compact look */
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    opacity: .65;
+    transform: scale(.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+/* Ensuring label styling is consistent for the floating label */
+.form-floating > label {
+    padding: 0.5rem 0.75rem;
+    color: #6c757d;
+}

@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'my_app/styles_new_order.css' %}">
+    <link rel="stylesheet" href="{% static 'my_app/scroll_styles.css' %}">
+
+{% endblock %}
+
+{% block container_class %}"container mt-5"{% endblock %}
+{% block content %}
+
+        <h1 class="text-center">New Order</h1>
+        <form method="post" action="{% url 'save_table_data' %}">
+        <div class="form-group form-floating">
+
+            <input type="text" class="form-control" id="customerName" placeholder=" " name="customer_name" required>
+            <label for="customerName">Customer Name:</label>
+        </div>
+        {% csrf_token %}
+        <table class="table" id="info-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="orderRows">
+                <tr>
+                    <td>
+                        <select class="form-control" id="product-select" name="product_0" required>
+                            <option></option>
+                            {% for p in products %}
+                            <option value="{{p.product_id}}" data-price="{{p.price_per_unit}}">{{p.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <input type="float" class="form-control quantity" placeholder=" " oninput="calculateTotal(this)" name="quantity_0" required>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control price" placeholder=" " name="price_0" readonly>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control total" placeholder=" " name="total_0" readonly>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-success" type="button" onclick="addRow()">Add New Row</button>
+
+        <div class="form-group mt-4 form-floating">
+            <input type="number" class="form-control" id="grandTotal" placeholder="Grand Total" name="grand_total" readonly>
+            <label for="grandTotal">Grand Total:</label>
+        </div>
+
+        <button class="btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        var products = [
+            {% for p in products %}
+            { id: "{{ p.product_id }}", name: "{{ p.name }}", price: "{{ p.price_per_unit }}" },
+            {% endfor %}
+        ];
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            {% if messages %}
+                {% for message in messages %}
+                    swal("Message", "{{ message }}", "success");
+                {% endfor %}
+            {% endif %}
+        });
+
+        $(document).ready(function() {
+            $('#product-select').select2({
+                placeholder: "Select Product",
+                width: '100%',
+                dropdownAutoWidth: true
+            });
+        });
+
+    </script>
+    <script src="{% static 'my_app/scripts.js' %}"></script>
+{% endblock %}
+
