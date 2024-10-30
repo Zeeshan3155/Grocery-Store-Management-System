@@ -17,12 +17,15 @@ A web-based grocery store management system built with the Django framework. Thi
 
 ## Screenshots
 ![gtms1](https://github.com/user-attachments/assets/46d4d36a-fd78-4f33-bfe5-f48e9e7751f5)
+![gtms4](https://github.com/user-attachments/assets/0f1ad4ec-4610-45f5-abff-eb110a152f3e)
 ![gtms2](https://github.com/user-attachments/assets/8269e811-97ad-4d9a-9cd7-57e055dce7cd)
 ![gtms3](https://github.com/user-attachments/assets/515d2821-4d75-470f-bde9-0c09fbc540a5)
 
 ## Demo
 
 https://github.com/user-attachments/assets/1bb916de-398c-4706-bd90-2e1ecc4f76aa
+
+
 https://github.com/user-attachments/assets/b87f86da-5038-4372-8096-69fff632e9f5
 
 
